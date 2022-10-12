@@ -5,9 +5,9 @@ Today we will learn the basics of using GitHub for version control and project m
 
 ### Objectives
 - Learn when and why GitHub is useful
-- Run through an example workflow
 - Explore creating your own GitHub repo
 - Communicate between RStudio with GitHub
+- Run through an example workflow
 
 
 ### Let's get set up
@@ -55,35 +55,48 @@ GitHub uses the program Git to keep track of the project’s history. The actual
 - You can view the repository at the time a commit was made using the <> button
 
 
-### Interfacing RStudio (local) and GitHub (remote)
-1.  Clone the GitHub repository you just made to your computer via RStudio
+### Clone a GitHub repository to your computer via RStudio
 - In RStudio, start a new Project: File > New Project > Version Control > Git 
 - In “Repository URL”, paste the URL of your new GitHub repository (click the green “Code” button, then copy the web address)
 - Keep the default directory name and take note of where it is going to become a folder on your computer (I keep all of mine in a high-level folder named Github)
 - Click Create Project
 - The repo should show up in RStudio as well as in the folder you specified
-- NNotice the Git tab in the top right pane! Let’s click on it.
-2. Make local changes and push them to GitHub
+- Notice the Git tab in the top right panel
+
+
+### Make changes in RStudio (local) and push them to GitHub (remote)
 - From RStudio, modify the markdown_file.md file: add the line “This is a new line from RStudio”
-- Save your changes -- notice this file now shows up in your Git tab with a blue M
-- We can choose to sync a single file or a group of files to GitHub when we are ready to save a snapshot in time of the progress we’ve made. Maybe this is after a big part of the analysis was done, or when you’re done working for the day. Syncing these local changes to GitHub.com involves 4 steps: Pull, Stage, Commit, Push
+- Save your changes -- notice this file now shows up in your Git tab with a blue M ("Modified")
+- We can sync a single file or a group of files to GitHub when we are ready to save a snapshot in time of the progress we’ve made. This might be after a big part of the analysis is completed or when you’re done working for the day. Syncing local changes to GitHub.com involves 4 steps: Pull, Stage, Commit, Push
 - Click the Commit button. Click on your markdown_file.md to preview the diff
-- “Pull” from GitHub.com to make sure that the local copy of our repository has the most up-to-date version of the files that is available online
-- "Stage" each file by clicking the box next to it
-- "Commit" your changes by writing a “commit message” to indicate the changes you've made. For now, this might be "modified markdown_file.md from RStudio". Press Commit. 
-- Close the window that pops up and notice the message in the commit window: "Your branch is ahead of origin/master by 1 commit."
-- "Push" the changes to GitHub by hitting the Push button. 
-3. View your changes in the commit history on GitHub
+1. “Pull” from GitHub.com to make sure that the local copy of our repository has the most up-to-date version of the files that is available online
+2. "Stage" each file by clicking the box next to it
+3. "Commit" your changes by writing a “commit message” to indicate the changes you've made. For now, this might be "modified markdown_file.md from RStudio". Press Commit. Close the window that pops up and notice the message in the commit window: "Your branch is ahead of origin/master by 1 commit."
+4. "Push" the changes to GitHub by hitting the Push button. View your changes in the commit history on GitHub
+
 
 ### Example workflow 
-Let’s go back to RStudio and see how we set up well-organized projects and workflows for our data analyses. Your GitHub repository is now also an RStudio Project (capital P Project). This means that RStudio has saved this additional file with extension .Rproj (ours is r-workshop.Rproj) to store specific settings for this project. It’s a bit of technology to help us get into the good habit of having a project-oriented workflow. A project-oriented workflow means that we are going to organize all of the relevant things we need for our analyses in the same place. That means that this is the place where we keep all of our data, code, figures, notes, etc. R Projects are great for reproducibility, because our self-contained working directory will be the first place R looks for files.
+Go back to RStudio and see how we set up well-organized projects and workflows for our data analyses. Your GitHub repository is now also an RStudio Project (.Rproj). This means that RStudio has saved this additional file to store specific settings for this project. This is where we keep all of our data, code, figures, notes, etc.
 
-1. Create data and figures folders
-- Let’s create a few folders to be organized. Let’s have one for our the raw data, and one for the figures we will output. We can do this in RStudio, in the bottom right pane Files pane by clicking the New Folder button: Add a folder called “data” and another called “figures”
-2. Move files to data folder
-- Now add a file to our local RStudio project folder so we can push it to GitHub. Save a file (using File -> Save Page As) into the ‘data’ subfolder of your R project. Now go back to RStudio: We can click on the data folder in the Files tab and now see this new file
+1. Create folders for data, scripts, and figures 
+- In the bottom right Files pane click the `New Folder` button. Add a folders labeled “data”, "scripts", and “figures”
+
+2. Add raw data files to data folder
+- Open Excel and create a dummy data file with and x column and a y column with 10 values in each 
+- Name the file `dummy_dataset.csv` and save into the ‘data’ subfolder of your R project
+- Now go back to RStudio: We can click on the data folder in the Files tab and now see this new file
+
 3. Create a new script that creates and saves a figure to the figures folder
-4. Sync these changes to GitHub. pull, stage, commit, push
+- Start a new R script and create a simple figure
+```
+dat <- read.csv("data/dummy_dataset.csv", header = TRUE)
+jpeg(file = "figures/plot1.jpeg")
+plot(dat$x, dat$y)
+dev.off()
+```
+- Save the script as "plot_script.R" in the `scripts` folder
+
+4. Sync these changes to GitHub. Remember: pull, stage, commit, push
 
 
 ### Additional readings/resources
