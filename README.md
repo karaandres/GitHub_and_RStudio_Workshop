@@ -54,6 +54,21 @@ GitHub uses the program Git to keep track of the project’s history. The actual
 - You can view the history of a specific file by clicking on the file and going to `History`
 - You can view the repository at the time a commit was made using the <> button
 
+### Configure Git
+ To connect the Git program installed on your computer with your GitHub account, you'll need to configuge Git (you should only have to do this once per computer). In R Studio:
+ ```
+ install.packages("usethis")
+ library(usethis)
+ use_git_config(user.name = "karaandres", user.email = "kja68@cornell.edu")
+```
+
+Git can communicate with a remote server using one of two protocols, SSH or HTTPS, which requires a Personal Access Token (PAT), an alternative to using a username and password for authentication to GitHub. To create a PAT:
+- Run `create_github_token()` in RStudio and use the selected defaults
+- Give the token a descriptive name in the `Note` field and click "Generate Token". Store the PAT somewhere safe!
+
+Now you just need to put your PAT into the Git credentials. You can do this in RStudio:
+- Enter commands `library(gitcreds)` and `gitcreds_set()`, then select option 2 to update the credentials
+- Enter the PAT as the password 
 
 ### Clone a GitHub repository to your computer via RStudio
 - In RStudio, start a new Project: File > New Project > Version Control > Git 
