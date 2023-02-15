@@ -1,4 +1,5 @@
-# Ling Lab Group GitHub Training
+# GitHub & RStudio: A Workflow for Collaborative Data Science
+
 
 Today we will learn the basics of using GitHub for version control and project management. Much of the content for this tutorial has been adapted from Nina Therkildsen's [Collaborative and Reproducible Data Science in R Course](https://nt246.github.io/NTRES6940-data-science/index.html).
 
@@ -6,7 +7,7 @@ Today we will learn the basics of using GitHub for version control and project m
 ### Objectives
 - Learn when and why GitHub is useful
 - Explore creating your own GitHub repo
-- Communicate between RStudio with GitHub
+- Learn to communicate between RStudio with GitHub
 - Run through an example workflow
 
 
@@ -43,7 +44,7 @@ I've made these repos open to the public; any researcher can view my code and, i
 - Click the pen icon to edit
 - Delete the sentence you added the first time
 - Add a new sentence: "This is my new sentence."
-- If you have extra time, play around with markdown text formatting. Toggle between `Preview` and `Edit file`
+- If you have extra time, play around with [markdown text formatting](https://www.markdownguide.org/cheat-sheet/). Toggle between `Preview` and `Edit file`
 - Commit the changes
 
 
@@ -96,10 +97,14 @@ Go back to RStudio and see how we set up well-organized projects and workflows f
 1. Create folders for data, scripts, and figures 
 - In the bottom right Files pane click the `New Folder` button. Add a folders labeled “data”, "scripts", and “figures”
 
-2. Create a new script that creates and saves a figure to the figures folder
-- Start a new R script to import, summarize, and plot a dataset. We will use a dataset of fiddler crab body sizes (HTL-MAR-FiddlerCrabBodySize.csv). Save this file into the `data` subfolder of your R project.
+2. Add raw data files to data folder
+- Save the file [HTL-MAR-FiddlerCrabBodySize.csv](data/HTL-MAR-FiddlerCrabBodySize.csv) into the ‘data’ subfolder of your R project
+- Now go back to RStudio: We can click on the data folder in the Files tab and now see this new file
 
 Data citation: Johnson, D. 2019. Fiddler crab body size in salt marshes from Florida to Massachusetts, USA at PIE and VCR LTER and NOAA NERR sites during summer 2016. ver 1. Environmental Data Initiative. https://doi.org/10.6073/pasta/4c27d2e778d3325d3830a5142e3839bb
+
+3. Create a new script to import, summarize, and plot a dataset
+- Start a new R script: File --> New File --> R Script
 
 ```
 library(dplyr)
@@ -125,10 +130,16 @@ crab_plot <- pie_crab %>%
 ggsave("figures/body_size_latitude.pdf", plot = crab_plot)
 
 ```
-- Save the script as "plot_script.R" in the `scripts` folder
+- Save the script as "crab_script.R" in the `scripts` folder
 
-4. Sync these changes to GitHub. Remember: pull, stage, commit, push
-5. View the new files you created on your local computer and GitHub repo. 
+4. View these changes on your local computer
+- Navigate to the project folder and see the files you created
+
+5. Sync these changes to GitHub. Remember the 4 steps: 
+- Pull, stage, commit, push
+
+6. Refresh your repo in your browser and see the changes you	made on your local computer reflected on your GitHub repo 
+
 
 ### Additional readings/resources
 - [Happy Git and GitHub for the useR](https://happygitwithr.com/index.html)
