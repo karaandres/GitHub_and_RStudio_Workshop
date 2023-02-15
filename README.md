@@ -1,4 +1,4 @@
-# Ling_Lab_Group_GitHub_Training
+# Ling Lab Group GitHub Training
 
 Today we will learn the basics of using GitHub for version control and project management. Much of the content for this tutorial has been adapted from Nina Therkildsen's [Collaborative and Reproducible Data Science in R Course](https://nt246.github.io/NTRES6940-data-science/index.html).
 
@@ -96,23 +96,39 @@ Go back to RStudio and see how we set up well-organized projects and workflows f
 1. Create folders for data, scripts, and figures 
 - In the bottom right Files pane click the `New Folder` button. Add a folders labeled “data”, "scripts", and “figures”
 
-2. Add raw data files to data folder
-- Open Excel and create a dummy data file with and x column and a y column with 10 values in each 
-- Name the file `dummy_dataset.csv` and save into the ‘data’ subfolder of your R project
-- Now go back to RStudio: We can click on the data folder in the Files tab and now see this new file
+2. Create a new script that creates and saves a figure to the figures folder
+- Start a new R script to import, summarize, and plot a dataset. We will use a dataset of fiddler crab body sizes (HTL-MAR-FiddlerCrabBodySize.csv). Save this file into the `data` subfolder of your R project.
 
-3. Create a new script that creates and saves a figure to the figures folder
-- Start a new R script and create a simple figure
+Data citation: Johnson, D. 2019. Fiddler crab body size in salt marshes from Florida to Massachusetts, USA at PIE and VCR LTER and NOAA NERR sites during summer 2016. ver 1. Environmental Data Initiative. https://doi.org/10.6073/pasta/4c27d2e778d3325d3830a5142e3839bb
+
 ```
-dat <- read.csv("data/dummy_dataset.csv", header = TRUE)
-jpeg(file = "figures/plot1.jpeg")
-plot(dat$x, dat$y)
-dev.off()
+library(dplyr)
+library(ggplot2)
+pie_crab <- read.csv("data/HTL-MAR-FiddlerCrabBodySize.csv")
+crab_stats <- pie_crab %>% 
+  group_by(Latitude, Site) %>% 
+  summarize(n = n(), 
+            mean_mm = mean(carapace_width),
+            min_mm = min(carapace_width),
+            max_mm = max(carapace_width),
+            sd_mm = sd(carapace_width),
+            median_mm = median(carapace_width))
+crab_stats
+write.table(crab_stats, file="data/crab_stats.csv")
+
+crab_plot <- pie_crab %>%
+  ggplot(aes(y=Latitude)) +
+  geom_boxplot(aes(carapace_width, group=Latitude, color=Latitude)) +
+  xlab("Size (mm)") +
+  theme_bw() +
+  theme(legend.position = "none")
+ggsave("figures/body_size_latitude.pdf", plot = crab_plot)
+
 ```
 - Save the script as "plot_script.R" in the `scripts` folder
 
 4. Sync these changes to GitHub. Remember: pull, stage, commit, push
-
+5. View the new files you created on your local computer and GitHub repo. 
 
 ### Additional readings/resources
 - [Happy Git and GitHub for the useR](https://happygitwithr.com/index.html)
