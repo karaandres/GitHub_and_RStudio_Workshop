@@ -95,7 +95,7 @@ Now you just need to put your PAT into the Git credentials. You can do this in R
 Go back to RStudio and see how we set up well-organized projects and workflows for our data analyses. Your GitHub repository is now also an RStudio Project (.Rproj). This means that RStudio has saved this additional file to store specific settings for this project. This is where we keep all of our data, code, figures, notes, etc.
 
 1. Create folders for data, scripts, and figures 
-- In the bottom right Files pane click the `New Folder` button. Add a folders labeled “data”, "scripts", and “figures”
+- In the bottom right Files pane in RStudio click the `New Folder` button. Add folders labeled “data”, "scripts", and “figures”
 
 2. Add raw data files to data folder
 - Save the file [HTL-MAR-FiddlerCrabBodySize.csv](data/HTL-MAR-FiddlerCrabBodySize.csv) into the ‘data’ subfolder of your R project
@@ -107,9 +107,12 @@ Data citation: Johnson, D. 2019. Fiddler crab body size in salt marshes from Flo
 - Start a new R script: File --> New File --> R Script
 
 ```
+install.packages(c("dplyr", "ggplot2"))
 library(dplyr)
 library(ggplot2)
+
 pie_crab <- read.csv("data/HTL-MAR-FiddlerCrabBodySize.csv")
+
 crab_stats <- pie_crab %>% 
   group_by(Latitude, Site) %>% 
   summarize(n = n(), 
@@ -134,6 +137,7 @@ ggsave("figures/body_size_latitude.pdf", plot = crab_plot)
 
 4. View these changes on your local computer
 - Navigate to the project folder and see the files you created
+- You should see a new figure, summary table, and script
 
 5. Sync these changes to GitHub. Remember the 4 steps: 
 - Pull, stage, commit, push
