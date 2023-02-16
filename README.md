@@ -41,7 +41,7 @@ I've made these repos open to the public; any researcher can view my code and, i
 - Name the file `markdown_file.md`
 - Add a sentence here: "I'm going to come back and delete this sentence."
 - Click `Commit new file`
-- Click the pen icon to edit
+- Click on the file and click the pen icon to edit
 - Delete the sentence you added the first time
 - Add a new sentence: "This is my new sentence."
 - If you have extra time, play around with [markdown text formatting](https://www.markdownguide.org/cheat-sheet/). Toggle between `Preview` and `Edit file`
@@ -50,17 +50,18 @@ I've made these repos open to the public; any researcher can view my code and, i
 
 ### Explore commit history in your repo
 GitHub uses the program Git to keep track of the project’s history. The actual changes made to a file are called a diff.
-- View the commit history of your repo by clicking the clock logo on your repo home page
+- View the commit history of your entire repo by clicking the clock logo on your repo home page
 - Click on a specific commit to view the diff
 - You can view the history of a specific file by clicking on the file and going to `History`
 - You can view the repository at the time a commit was made using the <> button
+
 
 ### Configure Git
  To connect the Git program installed on your computer with your GitHub account, you'll need to configuge Git (you should only have to do this once per computer). In R Studio:
  ```
  install.packages("usethis")
  library(usethis)
- use_git_config(user.name = "karaandres", user.email = "kja68@cornell.edu")
+ use_git_config(user.name = "yourusername", user.email = "youremail@example.com")
 ```
 
 Git can communicate with a remote server using one of two protocols, SSH or HTTPS, which requires a Personal Access Token (PAT), an alternative to using a username and password for authentication to GitHub. To create a PAT:
@@ -71,22 +72,25 @@ Now you just need to put your PAT into the Git credentials. You can do this in R
 - Enter commands `library(gitcreds)` and `gitcreds_set()`, then select option 2 to update the credentials
 - Enter the PAT as the password 
 
+
 ### Clone a GitHub repository to your computer via RStudio
 - In RStudio, start a new Project: File > New Project > Version Control > Git 
-- In “Repository URL”, paste the URL of your new GitHub repository (click the green “Code” button, then copy the web address)
+- In “Repository URL”, paste the URL of your new GitHub repository (click the green “Code” button, then copy the https web address)
 - Keep the default directory name and take note of where it is going to become a folder on your computer (I keep all of mine in a high-level folder named Github)
-- Click Create Project
-- The repo should show up in RStudio as well as in the folder you specified
+- Select ‘Open in new window’ and Click Create Project
+- The full repo should show up in RStudio as well as in the folder you specified
 - Notice the Git tab in the top right panel
+- The working directory will automatically be set to this folder whenever you work on this project. All of the repo files are contained in the .Rproj file you just created
 
 
 ### Make changes in RStudio (local) and push them to GitHub (remote)
-- From RStudio, modify the markdown_file.md file: add the line “This is a new line from RStudio”
+- In RStudio: click on the ‘Files’ pane and open the markdown_file.md file
+- Add the line “This is a new line from RStudio.”
 - Save your changes -- notice this file now shows up in your Git tab with a blue M ("Modified")
 - We can sync a single file or a group of files to GitHub when we are ready to save a snapshot in time of the progress we’ve made. This might be after a big part of the analysis is completed or when you’re done working for the day. Syncing local changes to GitHub.com involves 4 steps: Pull, Stage, Commit, Push
 - Click the Commit button. Click on your markdown_file.md to preview the diff
 1. “Pull” from GitHub.com to make sure that the local copy of our repository has the most up-to-date version of the files that is available online
-2. "Stage" each file by clicking the box next to it
+2. "Stage" each file you want to sync by clicking the box next to it
 3. "Commit" your changes by writing a “commit message” to indicate the changes you've made. For now, this might be "modified markdown_file.md from RStudio". Press Commit. Close the window that pops up and notice the message in the commit window: "Your branch is ahead of origin/master by 1 commit."
 4. "Push" the changes to GitHub by hitting the Push button. View your changes in the commit history on GitHub
 
@@ -98,7 +102,7 @@ Go back to RStudio and see how we set up well-organized projects and workflows f
 - In the bottom right Files pane in RStudio click the `New Folder` button. Add folders labeled “data”, "scripts", and “figures”
 
 2. Add raw data files to data folder
-- Save the file [HTL-MAR-FiddlerCrabBodySize.csv](data/HTL-MAR-FiddlerCrabBodySize.csv) into the ‘data’ subfolder of your R project
+- On your computer, save the file [HTL-MAR-FiddlerCrabBodySize.csv](data/HTL-MAR-FiddlerCrabBodySize.csv) into the ‘data’ subfolder of your R project 
 - Now go back to RStudio: We can click on the data folder in the Files tab and now see this new file
 
 Data citation: Johnson, D. 2019. Fiddler crab body size in salt marshes from Florida to Massachusetts, USA at PIE and VCR LTER and NOAA NERR sites during summer 2016. ver 1. Environmental Data Initiative. https://doi.org/10.6073/pasta/4c27d2e778d3325d3830a5142e3839bb
@@ -139,8 +143,9 @@ ggsave("figures/body_size_latitude.pdf", plot = crab_plot)
 - Navigate to the project folder and see the files you created
 - You should see a new figure, summary table, and script
 
-5. Sync these changes to GitHub. Remember the 4 steps: 
+5. Sync these new files to GitHub. Remember the 4 steps: 
 - Pull, stage, commit, push
+- You can just stage and commit the newly-created script, figure, and summary dataset
 
 6. Refresh your repo in your browser and see the changes you	made on your local computer reflected on your GitHub repo 
 
